@@ -18,19 +18,22 @@ TARGET = "default"
 SENSITIVE = "SEX"
 REQUIRED_COLUMNS = {"ID", SENSITIVE, TARGET, *MODEL_FEATURES}
 UCI_ALIASES = {
-    **{f"X{index}": name for index, name in enumerate(
-        [
-            "LIMIT_BAL",
-            "SEX",
-            "EDUCATION",
-            "MARRIAGE",
-            "AGE",
-            *PAY_STATUS,
-            *BILL_COLUMNS,
-            *PAYMENT_COLUMNS,
-        ],
-        start=1,
-    )},
+    **{
+        f"X{index}": name
+        for index, name in enumerate(
+            [
+                "LIMIT_BAL",
+                "SEX",
+                "EDUCATION",
+                "MARRIAGE",
+                "AGE",
+                *PAY_STATUS,
+                *BILL_COLUMNS,
+                *PAYMENT_COLUMNS,
+            ],
+            start=1,
+        )
+    },
     "Y": TARGET,
     "default payment next month": TARGET,
     "default.payment.next.month": TARGET,

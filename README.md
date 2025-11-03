@@ -6,6 +6,21 @@
 решения связан с ценой ошибок. Это не кредитное решение: результат требует политики риска,
 проверки применимого права и участия ответственного специалиста.
 
+## Структура каталогов
+
+- `src/credit_default_risk_model/` — схема, модель, threshold selection и train/evaluate/predict CLI;
+- `tests/` — контракт данных, порога, артефакта и сквозной smoke-тест;
+- `data/README.md` — источник и схема; `notebooks/` — исполненный smoke-эксперимент;
+- `artifacts/` — локальная модель, метрики и test predictions.
+
+## Используемые технологии
+
+Python 3.11, NumPy, pandas, scikit-learn и joblib; pytest и Ruff для QA.
+
+## Требования к окружению
+
+Python `>=3.11,<3.12` и `pip`; Makefile использует `python3.11`. Установка: `make install`.
+
 ## Данные
 
 Целевой источник — [UCI Default of Credit Card Clients](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients),
@@ -79,3 +94,7 @@ split выбран из-за отсутствия времени выдачи в
 
 Добавить временную внешнюю выборку, bootstrap-интервалы калибровки и групповых разрывов,
 проверку альтернативных cost-сценариев и документированную governance-процедуру.
+## Статус проекта
+
+Код обучения, cost-порога, fairness-диагностики и synthetic smoke-проверки готов. Итоговая
+оценка на зафиксированном UCI-файле и независимый risk/fairness review ещё не выполнены.
