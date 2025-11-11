@@ -1,6 +1,6 @@
 PYTHON ?= python3.11
 
-.PHONY: install lint test smoke train evaluate predict
+.PHONY: install lint test smoke train evaluate predict experiment
 
 install:
 	$(PYTHON) -m pip install -e ".[dev]"
@@ -22,3 +22,8 @@ evaluate:
 
 predict:
 	PYTHONPATH=src $(PYTHON) -m credit_default_risk_model.predict --input data/smoke.csv --artifact artifacts/model.joblib --output artifacts/scored.csv
+
+experiment:
+	PYTHONPATH=src $(PYTHON) -m credit_default_risk_model.experiment \
+		--output experiments/results/001_baseline.json \
+		--hypothesis "Зафиксировать baseline стоимости кредитных ошибок"

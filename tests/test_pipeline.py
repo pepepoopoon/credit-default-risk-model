@@ -15,6 +15,7 @@ from credit_default_risk_model.data import (
     validate_schema,
 )
 from credit_default_risk_model.evaluate import evaluate
+from credit_default_risk_model.experiment import run_experiment
 from credit_default_risk_model.modeling import (
     MODEL_ARTIFACT_VERSION,
     ModelArtifactError,
@@ -25,6 +26,42 @@ from credit_default_risk_model.train import train
 
 
 class CreditRiskPipelineTest(unittest.TestCase):
+    def test_experiment_records_cost_and_group_contract(self) -> None:
+        baseline = run_experiment(
+            rows=180,
+            data_seed=17,
+            split_seed=19,
+            model_seed=23,
+            false_negative_cost=5.0,
+            false_positive_cost=1.0,
+            calibration_method="sigmoid",
+            hypothesis="Проверить контракт эксперимента",
+        )
+        result = run_experiment(
+            rows=180,
+            data_seed=17,
+            split_seed=29,
+            model_seed=31,
+            false_negative_cost=5.0,
+            false_positive_cost=1.0,
+            calibration_method="isotonic",
+            hypothesis="Сравнить другой сценарий с baseline",
+            missing_rate=0.10,
+            unseen_category_rate=0.10,
+            prevalence_multiplier=1.25,
+            baseline=baseline,
+        )
+
+        self.assertIn("average_precision", result["test"])
+        self.assertIn("mean_cost", result["constant_probability_baseline"])
+        self.assertEqual(
+            result["group_diagnostics"]["warning"],
+            "Diagnostic only; no fairness conclusion.",
+        )
+        self.assertIn("cost_advantage_over_constant", result["comparison"])
+        self.assertGreater(result["dataset"]["missing_feature_values"], 0)
+        self.assertGreater(result["dataset"]["unseen_category_values"], 0)
+
     def test_smoke_data_is_deterministic(self) -> None:
         pd.testing.assert_frame_equal(make_smoke_data(180), make_smoke_data(180))
 

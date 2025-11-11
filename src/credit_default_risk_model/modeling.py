@@ -44,7 +44,9 @@ def validate_model_artifact(artifact: object) -> dict[str, object]:
     return artifact
 
 
-def build_model(seed: int = 42) -> CalibratedClassifierCV:
+def build_model(seed: int = 42, calibration_method: str = "sigmoid") -> CalibratedClassifierCV:
+    if calibration_method not in {"sigmoid", "isotonic"}:
+        raise ValueError("calibration_method must be sigmoid or isotonic")
     numeric = Pipeline(
         [("imputer", SimpleImputer(strategy="median")), ("scaler", StandardScaler())]
     )
@@ -66,7 +68,7 @@ def build_model(seed: int = 42) -> CalibratedClassifierCV:
             ),
         ]
     )
-    return CalibratedClassifierCV(estimator=estimator, method="sigmoid", cv=3)
+    return CalibratedClassifierCV(estimator=estimator, method=calibration_method, cv=3)
 
 
 def choose_cost_threshold(
