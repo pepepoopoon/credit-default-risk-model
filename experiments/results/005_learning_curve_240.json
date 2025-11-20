@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_credit_sensitivity",
+  "hypothesis": "Оценить cost-aware качество на выборке из 240 договоров",
+  "parameters": {
+    "rows": 240,
+    "data_seed": 42,
+    "split_seed": 42,
+    "model_seed": 42,
+    "false_negative_cost": 5.0,
+    "false_positive_cost": 1.0,
+    "calibration_method": "sigmoid",
+    "missing_rate": 0.0,
+    "unseen_category_rate": 0.0,
+    "prevalence_multiplier": 1.0
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "rows": 240,
+    "default_rate": 0.20833333333333334,
+    "missing_feature_values": 0,
+    "unseen_category_values": 0,
+    "split": {
+      "train": 144,
+      "validation": 48,
+      "test": 48
+    }
+  },
+  "validation": {
+    "selected_threshold": 0.16737437344519265,
+    "mean_cost": 0.6041666666666666
+  },
+  "test": {
+    "roc_auc": 0.781578947368421,
+    "average_precision": 0.4885739750445633,
+    "brier_score": 0.14896784469746335,
+    "threshold": 0.16737437344519265,
+    "precision": 0.3,
+    "recall": 0.9,
+    "f1": 0.45,
+    "confusion_matrix": {
+      "tn": 17,
+      "fp": 21,
+      "fn": 1,
+      "tp": 9
+    },
+    "mean_cost": 0.5416666666666666,
+    "calibration_bins": [
+      {
+        "bin": 1,
+        "count": 27,
+        "mean_probability": 0.15667319150562486,
+        "observed_rate": 0.037037037037037035
+      },
+      {
+        "bin": 2,
+        "count": 14,
+        "mean_probability": 0.2371988613807971,
+        "observed_rate": 0.42857142857142855
+      },
+      {
+        "bin": 3,
+        "count": 6,
+        "mean_probability": 0.37051717025762393,
+        "observed_rate": 0.5
+      },
+      {
+        "bin": 5,
+        "count": 1,
+        "mean_probability": 0.5315765657214155,
+        "observed_rate": 0.0
+      }
+    ]
+  },
+  "constant_probability_baseline": {
+    "roc_auc": 0.5,
+    "average_precision": 0.20833333333333334,
+    "brier_score": 0.16493055555555555,
+    "threshold": 0.20833333333333334,
+    "precision": 0.20833333333333334,
+    "recall": 1.0,
+    "f1": 0.3448275862068966,
+    "confusion_matrix": {
+      "tn": 0,
+      "fp": 38,
+      "fn": 0,
+      "tp": 10
+    },
+    "mean_cost": 0.7916666666666666,
+    "calibration_bins": [
+      {
+        "bin": 2,
+        "count": 48,
+        "mean_probability": 0.20833333333333334,
+        "observed_rate": 0.20833333333333334
+      }
+    ]
+  },
+  "group_diagnostics": {
+    "groups": {
+      "1": {
+        "count": 23,
+        "positive_rate": 0.5652173913043478,
+        "tpr": 1.0,
+        "fpr": 0.4444444444444444
+      },
+      "2": {
+        "count": 25,
+        "positive_rate": 0.68,
+        "tpr": 0.8,
+        "fpr": 0.65
+      }
+    },
+    "gaps": {
+      "positive_rate_max_gap": 0.11478260869565227,
+      "tpr_max_gap": 0.19999999999999996,
+      "fpr_max_gap": 0.2055555555555556
+    },
+    "warning": "Diagnostic only; no fairness conclusion."
+  },
+  "comparison": {
+    "test_delta": {
+      "roc_auc": 0.02376644736842104,
+      "average_precision": 0.021744928725385415,
+      "brier_score": 0.0001343573483300886,
+      "precision": -0.17619047619047618,
+      "recall": 0.275,
+      "f1": -0.09054054054054056,
+      "mean_cost": -0.02777777777777779
+    },
+    "threshold_delta": -0.09205447518043078,
+    "cost_advantage_over_constant": 0.25
+  }
+}

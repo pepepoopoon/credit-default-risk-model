@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_credit_sensitivity",
+  "hypothesis": "Оценить cost-aware качество на выборке из 900 договоров",
+  "parameters": {
+    "rows": 900,
+    "data_seed": 42,
+    "split_seed": 42,
+    "model_seed": 42,
+    "false_negative_cost": 5.0,
+    "false_positive_cost": 1.0,
+    "calibration_method": "sigmoid",
+    "missing_rate": 0.0,
+    "unseen_category_rate": 0.0,
+    "prevalence_multiplier": 1.0
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "rows": 900,
+    "default_rate": 0.25,
+    "missing_feature_values": 0,
+    "unseen_category_values": 0,
+    "split": {
+      "train": 540,
+      "validation": 180,
+      "test": 180
+    }
+  },
+  "validation": {
+    "selected_threshold": 0.15759724758621216,
+    "mean_cost": 0.48333333333333334
+  },
+  "test": {
+    "roc_auc": 0.7469958847736626,
+    "average_precision": 0.4578838242137419,
+    "brier_score": 0.1674421547059364,
+    "threshold": 0.15759724758621216,
+    "precision": 0.3644859813084112,
+    "recall": 0.8666666666666667,
+    "f1": 0.5131578947368421,
+    "confusion_matrix": {
+      "tn": 67,
+      "fp": 68,
+      "fn": 6,
+      "tp": 39
+    },
+    "mean_cost": 0.5444444444444444,
+    "calibration_bins": [
+      {
+        "bin": 0,
+        "count": 32,
+        "mean_probability": 0.07810033330419848,
+        "observed_rate": 0.0625
+      },
+      {
+        "bin": 1,
+        "count": 69,
+        "mean_probability": 0.14674591200445533,
+        "observed_rate": 0.14492753623188406
+      },
+      {
+        "bin": 2,
+        "count": 34,
+        "mean_probability": 0.2405399724858162,
+        "observed_rate": 0.29411764705882354
+      },
+      {
+        "bin": 3,
+        "count": 24,
+        "mean_probability": 0.33508551626503463,
+        "observed_rate": 0.5416666666666666
+      },
+      {
+        "bin": 4,
+        "count": 9,
+        "mean_probability": 0.443765143561124,
+        "observed_rate": 0.5555555555555556
+      },
+      {
+        "bin": 5,
+        "count": 7,
+        "mean_probability": 0.5690671692541722,
+        "observed_rate": 0.2857142857142857
+      },
+      {
+        "bin": 6,
+        "count": 3,
+        "mean_probability": 0.6363872237031756,
+        "observed_rate": 0.6666666666666666
+      },
+      {
+        "bin": 7,
+        "count": 1,
+        "mean_probability": 0.7420709951939571,
+        "observed_rate": 1.0
+      },
+      {
+        "bin": 8,
+        "count": 1,
+        "mean_probability": 0.8431993855621825,
+        "observed_rate": 0.0
+      }
+    ]
+  },
+  "constant_probability_baseline": {
+    "roc_auc": 0.5,
+    "average_precision": 0.25,
+    "brier_score": 0.1875,
+    "threshold": 0.25,
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4,
+    "confusion_matrix": {
+      "tn": 0,
+      "fp": 135,
+      "fn": 0,
+      "tp": 45
+    },
+    "mean_cost": 0.75,
+    "calibration_bins": [
+      {
+        "bin": 2,
+        "count": 180,
+        "mean_probability": 0.25,
+        "observed_rate": 0.25
+      }
+    ]
+  },
+  "group_diagnostics": {
+    "groups": {
+      "1": {
+        "count": 91,
+        "positive_rate": 0.6153846153846154,
+        "tpr": 0.8846153846153846,
+        "fpr": 0.5076923076923077
+      },
+      "2": {
+        "count": 89,
+        "positive_rate": 0.5730337078651685,
+        "tpr": 0.8421052631578947,
+        "fpr": 0.5
+      }
+    },
+    "gaps": {
+      "positive_rate_max_gap": 0.04235090751944692,
+      "tpr_max_gap": 0.04251012145748989,
+      "fpr_max_gap": 0.007692307692307665
+    },
+    "warning": "Diagnostic only; no fairness conclusion."
+  },
+  "comparison": {
+    "test_delta": {
+      "roc_auc": -0.010816615226337367,
+      "average_precision": -0.008945222105435968,
+      "brier_score": 0.018608667356803138,
+      "precision": -0.11170449488206496,
+      "recall": 0.2416666666666667,
+      "f1": -0.027382645803698424,
+      "mean_cost": -0.025000000000000022
+    },
+    "threshold_delta": -0.10183160103941127,
+    "cost_advantage_over_constant": 0.2055555555555556
+  }
+}
