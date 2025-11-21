@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_credit_sensitivity",
+  "hypothesis": "Проверить устойчивость credit-признаков к данным с seed 1013",
+  "parameters": {
+    "rows": 360,
+    "data_seed": 1013,
+    "split_seed": 42,
+    "model_seed": 42,
+    "false_negative_cost": 5.0,
+    "false_positive_cost": 1.0,
+    "calibration_method": "sigmoid",
+    "missing_rate": 0.0,
+    "unseen_category_rate": 0.0,
+    "prevalence_multiplier": 1.0
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "rows": 360,
+    "default_rate": 0.2638888888888889,
+    "missing_feature_values": 0,
+    "unseen_category_values": 0,
+    "split": {
+      "train": 216,
+      "validation": 72,
+      "test": 72
+    }
+  },
+  "validation": {
+    "selected_threshold": 0.27222827359667684,
+    "mean_cost": 0.3472222222222222
+  },
+  "test": {
+    "roc_auc": 0.743793445878848,
+    "average_precision": 0.4789469991895778,
+    "brier_score": 0.17094093131749075,
+    "threshold": 0.27222827359667684,
+    "precision": 0.43333333333333335,
+    "recall": 0.6842105263157895,
+    "f1": 0.5306122448979592,
+    "confusion_matrix": {
+      "tn": 36,
+      "fp": 17,
+      "fn": 6,
+      "tp": 13
+    },
+    "mean_cost": 0.6527777777777778,
+    "calibration_bins": [
+      {
+        "bin": 0,
+        "count": 6,
+        "mean_probability": 0.08679520676222978,
+        "observed_rate": 0.0
+      },
+      {
+        "bin": 1,
+        "count": 26,
+        "mean_probability": 0.14796907850741842,
+        "observed_rate": 0.11538461538461539
+      },
+      {
+        "bin": 2,
+        "count": 14,
+        "mean_probability": 0.2506768569111829,
+        "observed_rate": 0.21428571428571427
+      },
+      {
+        "bin": 3,
+        "count": 11,
+        "mean_probability": 0.3392724051645366,
+        "observed_rate": 0.45454545454545453
+      },
+      {
+        "bin": 4,
+        "count": 8,
+        "mean_probability": 0.4467550745559279,
+        "observed_rate": 0.75
+      },
+      {
+        "bin": 5,
+        "count": 3,
+        "mean_probability": 0.5351718297123415,
+        "observed_rate": 0.3333333333333333
+      },
+      {
+        "bin": 6,
+        "count": 3,
+        "mean_probability": 0.6309083084206005,
+        "observed_rate": 0.0
+      },
+      {
+        "bin": 7,
+        "count": 1,
+        "mean_probability": 0.7817299241583092,
+        "observed_rate": 1.0
+      }
+    ]
+  },
+  "constant_probability_baseline": {
+    "roc_auc": 0.5,
+    "average_precision": 0.2638888888888889,
+    "brier_score": 0.19425154320987656,
+    "threshold": 0.2638888888888889,
+    "precision": 0.2638888888888889,
+    "recall": 1.0,
+    "f1": 0.4175824175824176,
+    "confusion_matrix": {
+      "tn": 0,
+      "fp": 53,
+      "fn": 0,
+      "tp": 19
+    },
+    "mean_cost": 0.7361111111111112,
+    "calibration_bins": [
+      {
+        "bin": 2,
+        "count": 72,
+        "mean_probability": 0.2638888888888889,
+        "observed_rate": 0.2638888888888889
+      }
+    ]
+  },
+  "group_diagnostics": {
+    "groups": {
+      "1": {
+        "count": 34,
+        "positive_rate": 0.4411764705882353,
+        "tpr": 0.75,
+        "fpr": 0.2727272727272727
+      },
+      "2": {
+        "count": 38,
+        "positive_rate": 0.39473684210526316,
+        "tpr": 0.5714285714285714,
+        "fpr": 0.3548387096774194
+      }
+    },
+    "gaps": {
+      "positive_rate_max_gap": 0.04643962848297212,
+      "tpr_max_gap": 0.1785714285714286,
+      "fpr_max_gap": 0.08211143695014667
+    },
+    "warning": "Diagnostic only; no fairness conclusion."
+  },
+  "comparison": {
+    "test_delta": {
+      "roc_auc": -0.014019054121152008,
+      "average_precision": 0.012117952870399906,
+      "brier_score": 0.022107443968357482,
+      "precision": -0.042857142857142816,
+      "recall": 0.05921052631578949,
+      "f1": -0.009928295642581353,
+      "mean_cost": 0.08333333333333337
+    },
+    "threshold_delta": 0.012799424971053408,
+    "cost_advantage_over_constant": 0.08333333333333337
+  }
+}
