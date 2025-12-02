@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_credit_sensitivity",
+  "hypothesis": "Проверить инференс при 30% неизвестных категорий",
+  "parameters": {
+    "rows": 360,
+    "data_seed": 42,
+    "split_seed": 42,
+    "model_seed": 42,
+    "false_negative_cost": 5.0,
+    "false_positive_cost": 1.0,
+    "calibration_method": "sigmoid",
+    "missing_rate": 0.0,
+    "unseen_category_rate": 0.3,
+    "prevalence_multiplier": 1.0
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "rows": 360,
+    "default_rate": 0.22777777777777777,
+    "missing_feature_values": 0,
+    "unseen_category_values": 89,
+    "split": {
+      "train": 216,
+      "validation": 72,
+      "test": 72
+    }
+  },
+  "validation": {
+    "selected_threshold": 0.18607117120244823,
+    "mean_cost": 0.5138888888888888
+  },
+  "test": {
+    "roc_auc": 0.8225446428571428,
+    "average_precision": 0.5354457193563231,
+    "brier_score": 0.13774680543758241,
+    "threshold": 0.18607117120244823,
+    "precision": 0.39473684210526316,
+    "recall": 0.9375,
+    "f1": 0.5555555555555556,
+    "confusion_matrix": {
+      "tn": 33,
+      "fp": 23,
+      "fn": 1,
+      "tp": 15
+    },
+    "mean_cost": 0.3888888888888889,
+    "calibration_bins": [
+      {
+        "bin": 0,
+        "count": 16,
+        "mean_probability": 0.07190182926124439,
+        "observed_rate": 0.0625
+      },
+      {
+        "bin": 1,
+        "count": 18,
+        "mean_probability": 0.1312677904790098,
+        "observed_rate": 0.0
+      },
+      {
+        "bin": 2,
+        "count": 10,
+        "mean_probability": 0.24550657074721896,
+        "observed_rate": 0.1
+      },
+      {
+        "bin": 3,
+        "count": 13,
+        "mean_probability": 0.3458312695138097,
+        "observed_rate": 0.5384615384615384
+      },
+      {
+        "bin": 4,
+        "count": 5,
+        "mean_probability": 0.45767449291701184,
+        "observed_rate": 0.6
+      },
+      {
+        "bin": 5,
+        "count": 5,
+        "mean_probability": 0.5576353206404641,
+        "observed_rate": 0.4
+      },
+      {
+        "bin": 6,
+        "count": 5,
+        "mean_probability": 0.63556663823486,
+        "observed_rate": 0.4
+      }
+    ]
+  },
+  "constant_probability_baseline": {
+    "roc_auc": 0.5,
+    "average_precision": 0.2222222222222222,
+    "brier_score": 0.17292524005486973,
+    "threshold": 0.23148148148148148,
+    "precision": 0.2222222222222222,
+    "recall": 1.0,
+    "f1": 0.36363636363636365,
+    "confusion_matrix": {
+      "tn": 0,
+      "fp": 56,
+      "fn": 0,
+      "tp": 16
+    },
+    "mean_cost": 0.7777777777777778,
+    "calibration_bins": [
+      {
+        "bin": 2,
+        "count": 72,
+        "mean_probability": 0.23148148148148145,
+        "observed_rate": 0.2222222222222222
+      }
+    ]
+  },
+  "group_diagnostics": {
+    "groups": {
+      "1": {
+        "count": 38,
+        "positive_rate": 0.5526315789473685,
+        "tpr": 0.875,
+        "fpr": 0.4666666666666667
+      },
+      "2": {
+        "count": 34,
+        "positive_rate": 0.5,
+        "tpr": 1.0,
+        "fpr": 0.34615384615384615
+      }
+    },
+    "gaps": {
+      "positive_rate_max_gap": 0.052631578947368474,
+      "tpr_max_gap": 0.125,
+      "fpr_max_gap": 0.12051282051282053
+    },
+    "warning": "Diagnostic only; no fairness conclusion."
+  },
+  "comparison": {
+    "test_delta": {
+      "roc_auc": 0.0647321428571428,
+      "average_precision": 0.06861667303714525,
+      "brier_score": -0.01108668191155085,
+      "precision": -0.081453634085213,
+      "recall": 0.3125,
+      "f1": 0.01501501501501501,
+      "mean_cost": -0.18055555555555552
+    },
+    "threshold_delta": -0.0733576774231752,
+    "cost_advantage_over_constant": 0.3888888888888889
+  }
+}
