@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_credit_sensitivity",
+  "hypothesis": "Проверить совместный credit-стресс на 1600 строках при стоимости FN 30",
+  "parameters": {
+    "rows": 1600,
+    "data_seed": 5081,
+    "split_seed": 5181,
+    "model_seed": 5281,
+    "false_negative_cost": 30.0,
+    "false_positive_cost": 1.0,
+    "calibration_method": "isotonic",
+    "missing_rate": 0.15,
+    "unseen_category_rate": 0.03,
+    "prevalence_multiplier": 1.25
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "rows": 1280,
+    "default_rate": 0.3078125,
+    "missing_feature_values": 4198,
+    "unseen_category_values": 32,
+    "split": {
+      "train": 768,
+      "validation": 256,
+      "test": 256
+    }
+  },
+  "validation": {
+    "selected_threshold": 0.0,
+    "mean_cost": 0.69140625
+  },
+  "test": {
+    "roc_auc": 0.7544875920760925,
+    "average_precision": 0.5472027309608852,
+    "brier_score": 0.1825868283011838,
+    "threshold": 0.0,
+    "precision": 0.30859375,
+    "recall": 1.0,
+    "f1": 0.4716417910447761,
+    "confusion_matrix": {
+      "tn": 0,
+      "fp": 177,
+      "fn": 0,
+      "tp": 79
+    },
+    "mean_cost": 0.69140625,
+    "calibration_bins": [
+      {
+        "bin": 0,
+        "count": 20,
+        "mean_probability": 0.05798987745740777,
+        "observed_rate": 0.05
+      },
+      {
+        "bin": 1,
+        "count": 91,
+        "mean_probability": 0.1287291645285721,
+        "observed_rate": 0.14285714285714285
+      },
+      {
+        "bin": 2,
+        "count": 40,
+        "mean_probability": 0.2448387200242479,
+        "observed_rate": 0.225
+      },
+      {
+        "bin": 3,
+        "count": 40,
+        "mean_probability": 0.3577752972462372,
+        "observed_rate": 0.55
+      },
+      {
+        "bin": 4,
+        "count": 20,
+        "mean_probability": 0.44094197965274384,
+        "observed_rate": 0.5
+      },
+      {
+        "bin": 5,
+        "count": 15,
+        "mean_probability": 0.5455653829499986,
+        "observed_rate": 0.6
+      },
+      {
+        "bin": 6,
+        "count": 14,
+        "mean_probability": 0.6583280791087944,
+        "observed_rate": 0.21428571428571427
+      },
+      {
+        "bin": 7,
+        "count": 14,
+        "mean_probability": 0.7548256115223486,
+        "observed_rate": 0.7857142857142857
+      },
+      {
+        "bin": 8,
+        "count": 1,
+        "mean_probability": 0.8421646556610994,
+        "observed_rate": 0.0
+      },
+      {
+        "bin": 9,
+        "count": 1,
+        "mean_probability": 0.9147286821705426,
+        "observed_rate": 1.0
+      }
+    ]
+  },
+  "constant_probability_baseline": {
+    "roc_auc": 0.5,
+    "average_precision": 0.30859375,
+    "brier_score": 0.21336534288194442,
+    "threshold": 0.3072916666666667,
+    "precision": 0.30859375,
+    "recall": 1.0,
+    "f1": 0.4716417910447761,
+    "confusion_matrix": {
+      "tn": 0,
+      "fp": 177,
+      "fn": 0,
+      "tp": 79
+    },
+    "mean_cost": 0.69140625,
+    "calibration_bins": [
+      {
+        "bin": 3,
+        "count": 256,
+        "mean_probability": 0.3072916666666667,
+        "observed_rate": 0.30859375
+      }
+    ]
+  },
+  "group_diagnostics": {
+    "groups": {
+      "1": {
+        "count": 143,
+        "positive_rate": 1.0,
+        "tpr": 1.0,
+        "fpr": 1.0
+      },
+      "2": {
+        "count": 113,
+        "positive_rate": 1.0,
+        "tpr": 1.0,
+        "fpr": 1.0
+      }
+    },
+    "gaps": {
+      "positive_rate_max_gap": 0.0,
+      "tpr_max_gap": 0.0,
+      "fpr_max_gap": 0.0
+    },
+    "warning": "Diagnostic only; no fairness conclusion."
+  },
+  "comparison": {
+    "test_delta": {
+      "roc_auc": -0.003324907923907494,
+      "average_precision": 0.08037368464170735,
+      "brier_score": 0.03375334095205054,
+      "precision": -0.16759672619047616,
+      "recall": 0.375,
+      "f1": -0.06889874949576447,
+      "mean_cost": 0.12196180555555558
+    },
+    "threshold_delta": -0.25942884862562343,
+    "cost_advantage_over_constant": 0.0
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_credit_sensitivity",
+  "hypothesis": "Проверить совместный credit-стресс на 240 строках при стоимости FN 3",
+  "parameters": {
+    "rows": 240,
+    "data_seed": 5009,
+    "split_seed": 5109,
+    "model_seed": 5209,
+    "false_negative_cost": 3.0,
+    "false_positive_cost": 1.0,
+    "calibration_method": "isotonic",
+    "missing_rate": 0.05,
+    "unseen_category_rate": 0.03,
+    "prevalence_multiplier": 1.25
+  },
+  "dataset": {
+    "mode": "synthetic",
+    "rows": 192,
+    "default_rate": 0.2916666666666667,
+    "missing_feature_values": 212,
+    "unseen_category_values": 3,
+    "split": {
+      "train": 114,
+      "validation": 39,
+      "test": 39
+    }
+  },
+  "validation": {
+    "selected_threshold": 0.28098290598290593,
+    "mean_cost": 0.358974358974359
+  },
+  "test": {
+    "roc_auc": 0.7581168831168831,
+    "average_precision": 0.5842909615636888,
+    "brier_score": 0.17285214833426293,
+    "threshold": 0.28098290598290593,
+    "precision": 0.5454545454545454,
+    "recall": 0.5454545454545454,
+    "f1": 0.5454545454545454,
+    "confusion_matrix": {
+      "tn": 23,
+      "fp": 5,
+      "fn": 5,
+      "tp": 6
+    },
+    "mean_cost": 0.5128205128205128,
+    "calibration_bins": [
+      {
+        "bin": 0,
+        "count": 14,
+        "mean_probability": 0.05446299377605125,
+        "observed_rate": 0.07142857142857142
+      },
+      {
+        "bin": 1,
+        "count": 9,
+        "mean_probability": 0.13497150997150997,
+        "observed_rate": 0.2222222222222222
+      },
+      {
+        "bin": 2,
+        "count": 6,
+        "mean_probability": 0.24190941018183396,
+        "observed_rate": 0.5
+      },
+      {
+        "bin": 3,
+        "count": 3,
+        "mean_probability": 0.3819444444444444,
+        "observed_rate": 0.0
+      },
+      {
+        "bin": 4,
+        "count": 4,
+        "mean_probability": 0.4525672771160075,
+        "observed_rate": 0.75
+      },
+      {
+        "bin": 5,
+        "count": 1,
+        "mean_probability": 0.5177445497422388,
+        "observed_rate": 1.0
+      },
+      {
+        "bin": 6,
+        "count": 1,
+        "mean_probability": 0.6319444444444445,
+        "observed_rate": 0.0
+      },
+      {
+        "bin": 7,
+        "count": 1,
+        "mean_probability": 0.7986111111111112,
+        "observed_rate": 1.0
+      }
+    ]
+  },
+  "constant_probability_baseline": {
+    "roc_auc": 0.5,
+    "average_precision": 0.28205128205128205,
+    "brier_score": 0.20276061273291188,
+    "threshold": 0.2982456140350877,
+    "precision": 0.28205128205128205,
+    "recall": 1.0,
+    "f1": 0.44,
+    "confusion_matrix": {
+      "tn": 0,
+      "fp": 28,
+      "fn": 0,
+      "tp": 11
+    },
+    "mean_cost": 0.717948717948718,
+    "calibration_bins": [
+      {
+        "bin": 2,
+        "count": 39,
+        "mean_probability": 0.29824561403508765,
+        "observed_rate": 0.28205128205128205
+      }
+    ]
+  },
+  "group_diagnostics": {
+    "groups": {
+      "1": {
+        "count": 18,
+        "positive_rate": 0.2222222222222222,
+        "tpr": 0.75,
+        "fpr": 0.07142857142857142
+      },
+      "2": {
+        "count": 21,
+        "positive_rate": 0.3333333333333333,
+        "tpr": 0.42857142857142855,
+        "fpr": 0.2857142857142857
+      }
+    },
+    "gaps": {
+      "positive_rate_max_gap": 0.1111111111111111,
+      "tpr_max_gap": 0.32142857142857145,
+      "fpr_max_gap": 0.21428571428571427
+    },
+    "warning": "Diagnostic only; no fairness conclusion."
+  },
+  "comparison": {
+    "test_delta": {
+      "roc_auc": 0.00030438311688307795,
+      "average_precision": 0.11746191524451088,
+      "brier_score": 0.02401866098512967,
+      "precision": 0.06926406926406925,
+      "recall": -0.07954545454545459,
+      "f1": 0.004914004914004844,
+      "mean_cost": -0.056623931623931645
+    },
+    "threshold_delta": 0.021554057357282497,
+    "cost_advantage_over_constant": 0.20512820512820518
+  }
+}
